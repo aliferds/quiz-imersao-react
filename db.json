@@ -31,10 +31,10 @@
   ],
   "theme": {
     "colors": {
-      "primary": "rgb(90,10,100)",
-      "secondary": "rgb(40,152,102)",
+      "primary": "rgb(90,100,210)",
+      "secondary": "rgb(250,150,80)",
       "mainBg": "rgb(0,0,0)",
-      "contrastText": "#FFFFFF",
+      "contrastText": "rgb(255,255,255)",
       "wrong": "rgb(229, 57, 53)",
       "success": "rgb(76,176,75)"
     },

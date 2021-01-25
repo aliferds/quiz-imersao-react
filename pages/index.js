@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import db from '../db.json'
 import Card from '../src/components/Card'
+import Logo from '../src/components/Logo'
 import Footer from '../src/components/Footer'
 import Background from '../src/components/Background'
+import GithubCorner from '../src/components/GithubCorner'
 
 const Page = styled.div`
   width: 100%;
@@ -19,10 +21,11 @@ export default function Home() {
   return (
     <Background backgroundImage={db.bg}>
       <Page>
-        Meu quiz
+        <GithubCorner projectUrl="https://github.com/aliferds/quiz-imersao-react" />
+        <Logo>Minha Logo</Logo>
         <Card>
         <Card.Header>
-          Quiz
+          Meu quiz
         </Card.Header>
         <Card.Content>
           Este quiz ...
@@ -31,8 +34,8 @@ export default function Home() {
         </Card>
         <Card>
           <Card.Content>
-            Card2
-            Este quiz ...
+            <h1>Quiz da galera</h1>
+            <p> Este quiz ... </p>
           </Card.Content>
         </Card>
         <Footer />
