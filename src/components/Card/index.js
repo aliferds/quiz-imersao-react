@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Card = styled.div`
+  color: ${({ theme }) => theme.colors.contrastText};
   margin-top: 24px;
   margin-bottom: 24px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
@@ -24,6 +25,8 @@ const Card = styled.div`
 
 Card.Header = styled.header`
   display: flex;
+  color: ${({ theme }) => theme.colors.mainBg};
+  font-size: 1.3rem;
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;

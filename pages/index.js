@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+
 import db from '../db.json'
 import Card from '../src/components/Card'
 import Logo from '../src/components/Logo'
@@ -18,17 +21,42 @@ const Page = styled.div`
 `
 
 export default function Home() {
+  const router = useRouter();
+  let [name, setName] = React.useState('');
+
   return (
     <Background backgroundImage={db.bg}>
+      <Head>
+        <title>Ouro Preto Quiz</title>
+      </Head>
       <Page>
         <GithubCorner projectUrl="https://github.com/aliferds/quiz-imersao-react" />
-        <Logo>Minha Logo</Logo>
+        <Logo><img src="assets/logo/op-logo.png" alt="Logotipo de Ouro Preto" /></Logo>
         <Card>
         <Card.Header>
-          Meu quiz
+          Ouro Preto Quiz
         </Card.Header>
         <Card.Content>
-          Este quiz ...
+        <form onSubmit={function (infosDoEvento) {
+          infosDoEvento.preventDefault();
+          router.push(`/quiz?name=${name}`);
+          }}
+        >
+          <input
+            onChange={function (infosDoEvento) {
+              setName()
+            }}
+            placeholder="Seu nome"
+            id="nameInput"
+            type="text"
+          />
+          <button 
+            type="submit" 
+            disabled={name.length === 0}
+          >
+            Jogar
+          </button>
+        </form>
         </Card.Content>
 
         </Card>
