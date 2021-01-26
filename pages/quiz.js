@@ -1,3 +1,5 @@
-export default function Quiz(props) {
-    return <h1>{props}</h1>
+export default function Quiz() {
+    return (
+        <h1>Página Quiz</h1>
+    )
 }
