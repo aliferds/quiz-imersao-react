@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Image from 'next/image'
 
 const LogoContainer = styled.div`
     font-size: 1.8rem;
@@ -8,7 +9,12 @@ const LogoContainer = styled.div`
 function Logo(props) {
     return (
         <LogoContainer>
-            {props.children}
+            <Image
+                src={props.src}
+                alt={props.alt}
+                width={500}
+                height={300}
+            />
         </LogoContainer>
     )
 };
