@@ -1,27 +1,28 @@
 {
+  "bg": "https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1",
   "title": "Quiz CSS da Alura",
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
+      "image": "https://media1.giphy.com/media/l0HlRnAWXxn0MhKLK/giphy.gif",
+      "title": "Qual a Origem do nome Ouro Preto?",
+      "description": "",
       "answer": 2,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Havia muito petroleo na região",
+        "Extraiam-se muito carvão na região da cidade",
+        "Havia pepitas de ouro na cor preta",
+        "Haviam muitos escravos na cidade"
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://media2.giphy.com/media/de5bARu0SsXiU/giphy.gif",
+      "title": "Qual a instituição de ensino superior mais antiga de Ouro Preto?",
+      "description": "",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+         "Escola de Farmácia",
+         "Escola de Minas"
       ]
     }
   ],
@@ -30,10 +31,10 @@
   ],
   "theme": {
     "colors": {
-      "primary": "rgb(64, 30, 0)",
-      "secondary": "rgb(0,60,0)",
-      "mainBg": "rgb(255, 248, 189)",
-      "contrastText": "rgb(28,28,28)",
+      "primary": "#331805",
+      "secondary": "#E19158",
+      "mainBg": "#A84F0F",
+      "contrastText": "#FFFFFF",
       "wrong": "rgb(229, 57, 53)",
       "success": "rgb(76,176,75)"
     },

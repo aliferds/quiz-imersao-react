@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 
+import Logo from '../src/components/Logo'
 import Card from '../src/components/Card'
 import Footer from '../src/components/Footer'
 import Background from '../src/components/Background'
 import GithubCorner from '../src/components/GithubCorner'
+import Input from '../src/components/Input'
+import Button from '../src/components/Button'
 
 const Page = styled.div`
   width: 100%;
@@ -30,40 +32,41 @@ export default function Home() {
       </Head>
       <Page>
         <GithubCorner projectUrl="https://github.com/aliferds/quiz-imersao-react" />
-        <Image src="/assets/logo/op-logo-2.png" alt="Logotipo de Ouro Preto" width={174} height={110}/>
-        <Card>
-        <Card.Header>
-          Ouro Preto Quiz
-        </Card.Header>
-        <Card.Content>
-          <form onSubmit={function (eventInfo) {
-              eventInfo.preventDefault();
-              router.push(`/quiz?name=${name}`);
-              console.log('Fazendo uma submissao por meio do react');
-            }}
-            >
-              <input
-                onChange={function (eventInfo) {
-                  console.log(eventInfo.target.value);
-                  // State
-                  // name = eventInfo.target.value;
-                  setName(eventInfo.target.value);
-                }}
-                placeholder="Seu nome"
-              />
-              <button type="submit" disabled={name.value === 0}>
-                Jogar Agora
-              </button>
-            </form>
-        </Card.Content>
 
+        <Logo />
+
+        <Card>
+          <Card.Header> Ouro Preto Quiz </Card.Header>
+          <Card.Content>
+            <form onSubmit={function (eventInfo) {
+                eventInfo.preventDefault();
+                router.push(`/quiz?name=${name}`);
+                console.log('Fazendo uma submissao por meio do react');
+              }}
+              >
+                <Input
+                  onChange={(eventInfo) => {
+                    console.log(eventInfo.target.value);
+                    // State
+                    // name = eventInfo.target.value;
+                    setName(eventInfo.target.value);
+                  }}
+                  placeholder="Seu nome"
+                />
+                <Button type="submit" disabled={name.value === 0}>
+                  Jogar Agora
+                </Button>
+              </form>
+          </Card.Content>
         </Card>
+
         <Card>
           <Card.Content>
             <h1>Quiz da galera</h1>
             <p> Este quiz ... </p>
           </Card.Content>
         </Card>
+
         <Footer />
       </Page>
     </Background>
