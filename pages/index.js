@@ -46,14 +46,12 @@ export default function Home() {
               >
                 <Input
                   onChange={(eventInfo) => {
-                    console.log(eventInfo.target.value);
-                    // State
-                    // name = eventInfo.target.value;
                     setName(eventInfo.target.value);
                   }}
+                  value={name}
                   placeholder="Seu nome"
                 />
-                <Button type="submit" disabled={name.value === 0}>
+                <Button type="submit" disabled={name.length === 0}>
                   Jogar Agora
                 </Button>
               </form>

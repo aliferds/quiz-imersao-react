@@ -3,6 +3,7 @@ import Card from '../src/components/Card';
 import Logo from '../src/components/Logo';
 import Background from '../src/components/Background';
 import QuizContainer from '../src/components/QuizContainer';
+import AlternativesForm from '../src/components/AlternativesForm';
 import Button from '../src/components/Button';
 
 function LoadingCard() {
@@ -24,8 +25,14 @@ function QuestionCard({
   questionIndex,
   totalQuestions,
   onSubmit,
+  addResult,
 }) {
+  const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
+  const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
   const questionId = `question__${questionIndex}`;
+  const isCorrect = (selectedAlternative === question.answer);
+  const hasAlternativeSelected = selectedAlternative !== undefined;
+
   return (
     <Card>
       <Card.Header>
@@ -52,23 +59,34 @@ function QuestionCard({
           {question.description}
         </p>
 
-        <form
+        <AlternativesForm
           onSubmit={(infosDoEvento) => {
             infosDoEvento.preventDefault();
-            onSubmit();
+            setIsQuestionSubmited(true);
+            setTimeout(() => {
+              addResult(isCorrect);
+              onSubmit();
+              setIsQuestionSubmited(false);
+            }, 3 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Card.Topic
                 as="label"
+                key={alternativeId}
                 htmlFor={alternativeId}
+                data-selected={isSelected}
+                data-status={isQuestionSubmited && alternativeStatus}
               >
                 <input
                   // style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
+                  onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
                 />
                 {alternative}
@@ -79,10 +97,44 @@ function QuestionCard({
           {/* <pre>
             {JSON.stringify(question, null, 4)}
           </pre> */}
-          <Button type="submit">
+          <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
-        </form>
+          {isQuestionSubmited && isCorrect && <p>Voce Acertou!</p>}
+          {isQuestionSubmited && !isCorrect && <p>Voce Errou!</p>}
+        </AlternativesForm>
+      </Card.Content>
+    </Card>
+  );
+}
+
+function ResultsCard({ results }) {
+  return (
+    <Card>
+      <Card.Header>
+        Tela de Resultado
+      </Card.Header>
+
+      <Card.Content>
+        <p>Você acertou {results.reduce((somaAtual, resultAtual) => {
+          const isAcertou = resultAtual === true;
+          if(isAcertou){
+            return somaAtual+1;
+          }
+          return somaAtual;
+        }, 0)} perguntas</p>
+        <ul>
+          {results.map((result, index) => (
+            <li key={`result__${result}`}>
+              {index+1}
+              {' '}
+              Resultado:
+              {result === true
+                ? ' Acertou'
+                : ' Errou'}
+            </li>
+          ))}
+        </ul>
       </Card.Content>
     </Card>
   );
@@ -95,21 +147,24 @@ const screenStates = {
 };
 export default function QuizPage() {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
+  const [results, setResults] = React.useState([]);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
-  // [React chama de: Efeitos || Effects]
-  // React.useEffect
-  // atualizado === willUpdate
-  // morre === willUnmount
+  function addResult(result) {
+    // results.push(result);
+    setResults([
+      ...results,
+      result,
+    ]);
+  }
+
   React.useEffect(() => {
-    // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
     }, 1 * 1000);
-  // nasce === didMount
   }, []);
 
   function handleSubmitQuiz() {
@@ -131,12 +186,13 @@ export default function QuizPage() {
             questionIndex={questionIndex}
             totalQuestions={totalQuestions}
             onSubmit={handleSubmitQuiz}
+            addResult={addResult}
           />
         )}
 
         {screenState === screenStates.LOADING && <LoadingCard />}
 
-        {screenState === screenStates.RESULT && <div>Você acertou X questões, parabéns!</div>}
+        {screenState === screenStates.RESULT && <ResultsCard results={results} />}
       </QuizContainer>
     </Background>
   );
