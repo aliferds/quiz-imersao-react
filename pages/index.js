@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 import db from '../db.json'
 
 import Logo from '../src/components/Logo'
@@ -43,7 +44,15 @@ export default function Home() {
 
         <Logo />
 
-        <Card>
+        <Card
+          as={motion.section}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0 },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Card.Header> Ouro Preto Quiz </Card.Header>
           <Card.Content>
             <form onSubmit={function (eventInfo) {
