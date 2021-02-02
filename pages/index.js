@@ -5,6 +5,7 @@ import db from '../db.json'
 
 import Logo from '../src/components/Logo'
 import Card from '../src/components/Card'
+import Link from '../src/components/Link'
 import Footer from '../src/components/Footer'
 import Background from '../src/components/Background'
 import GithubCorner from '../src/components/GithubCorner'
@@ -76,7 +77,9 @@ export default function Home() {
                 .split('.');
                 return (
                   <li key={linkExterno}>
-                    <Card.Topic href={`/quiz/${projectName}___${githubUser}`}>
+                    <Card.Topic
+                      href={`/quiz/${projectName}___${githubUser}`}
+                    >
                       {`${githubUser} | ${projectName}`}
                     </Card.Topic>
                   </li>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components'
 import QuizScreen from '../../src/screens/QuizScreen'
 
-export function QuizDaGaleraPage({dbExterno}){
+export default function QuizDaGaleraPage({dbExterno}){
     return (
         <ThemeProvider theme={dbExterno.theme}>
             <QuizScreen

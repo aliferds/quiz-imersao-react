@@ -4,6 +4,7 @@ import Background from '../../components/Background';
 import QuizContainer from '../../components/QuizContainer';
 import AlternativesForm from '../../components/AlternativesForm';
 import Button from '../../components/Button';
+import BackLinkArrow from '../../components/Link'
 
 function LoadingCard() {
   return (
@@ -35,7 +36,7 @@ function QuestionCard({
   return (
     <Card>
       <Card.Header>
-        {/* <BackLinkArrow href="/" /> */}
+        {/* {<BackLinkArrow href="/" />} */}
         <h3>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
         </h3>
@@ -93,9 +94,6 @@ function QuestionCard({
             );
           })}
 
-          {/* <pre>
-            {JSON.stringify(question, null, 4)}
-          </pre> */}
           <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
