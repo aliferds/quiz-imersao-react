@@ -1,10 +1,9 @@
-import db from '../db.json';
-import Card from '../src/components/Card';
-import Logo from '../src/components/Logo';
-import Background from '../src/components/Background';
-import QuizContainer from '../src/components/QuizContainer';
-import AlternativesForm from '../src/components/AlternativesForm';
-import Button from '../src/components/Button';
+import Card from '../../components/Card';
+import Logo from '../../components/Logo';
+import Background from '../../components/Background';
+import QuizContainer from '../../components/QuizContainer';
+import AlternativesForm from '../../components/AlternativesForm';
+import Button from '../../components/Button';
 
 function LoadingCard() {
   return (
@@ -145,13 +144,13 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
-export default function QuizPage() {
+export default function QuizPage({ questions, background }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
-  const totalQuestions = db.questions.length;
+  const totalQuestions = questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
+  const question = questions[questionIndex];
 
   function addResult(result) {
     // results.push(result);
@@ -177,7 +176,7 @@ export default function QuizPage() {
   }
 
   return (
-    <Background backgroundImage="assets/background/Cidade-Ouro-Preto.jpg">
+    <Background backgroundImage={background}>
       <QuizContainer>
         <Logo />
         {screenState === screenStates.QUIZ && (

@@ -39,7 +39,6 @@ export default function Home() {
         <title>Ouro Preto Quiz</title>
       </Head>
       <Page>
-        <GithubCorner projectUrl="https://github.com/aliferds/quiz-imersao-react" />
 
         <Logo />
 
@@ -69,24 +68,27 @@ export default function Home() {
         <Card>
           <Card.Content>
             <h1>Quiz da galera</h1>
-            {db.external.map((linkExterno) => {
-              const [projectName, githubUser] = linkExterno.replace(/\//g, '')
-              .replace('https:', '')
-              .replace('.vercel.app', ' ')
-              .split('.');
-              return (
-                <li key={linkExterno}>
-                  <Card.Topic href={linkExterno}>
-                    {`${githubUser} | ${projectName}`}
-                  </Card.Topic>
-                </li>
-              );
-            })}
+            <ul>
+              {db.external.map((linkExterno) => {
+                const [projectName, githubUser] = linkExterno.replace(/\//g, '')
+                .replace('https:', '')
+                .replace('.vercel.app', ' ')
+                .split('.');
+                return (
+                  <li key={linkExterno}>
+                    <Card.Topic href={`/quiz/${projectName}___${githubUser}`}>
+                      {`${githubUser} | ${projectName}`}
+                    </Card.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Card.Content>
         </Card>
 
         <Footer />
       </Page>
+      <GithubCorner projectUrl="https://github.com/aliferds/quiz-imersao-react" />
     </Background>
   )
 }
